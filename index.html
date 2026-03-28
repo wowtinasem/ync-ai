@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>영남이공대학교 신입생 교육 강사 허브</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --ai-color: #3654A5;
+  --ai-bg: #EEF1F8;
+  --ai-light: #D8DFEF;
+  --speech-color: #EA580C;
+  --speech-bg: #FFF7ED;
+  --speech-light: #FFEDD5;
+  --bg: #F0EDE8;
+  --card: #FFFFFF;
+  --text: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --border: #D8D5CF;
+  --border-light: #EBE8E3;
+  --accent: #1E3264;
+  --kakao: #FEE500;
+  --kakao-text: #191919;
+  --new-badge: #DC2626;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-weight: 420;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(240,237,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(30,50,100,0.08);
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto; padding:0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; gap:16px;
+}
+.logo-area { display:flex; align-items:center; gap:14px; flex-shrink:0; }
+.logo-mark {
+  width:44px; height:44px; background:var(--accent); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:800; font-size:17px; letter-spacing:-0.5px;
+}
+.logo-text { font-size:21px; font-weight:700; color:var(--text); letter-spacing:-0.3px; }
+
+.header-nav { display:flex; gap:6px; }
+.nav-btn {
+  padding: 9px 18px; border-radius: var(--radius-sm);
+  font-size: 15px; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--border); background: var(--card); color: var(--text);
+  transition: all 0.15s; font-family:inherit;
+}
+.nav-btn:hover { background: var(--accent); color: #fff; border-color:var(--accent); }
+.nav-btn.active { background: var(--accent); color: #fff; border-color:var(--accent); }
+
+.kakao-header-btn {
+  display:flex; align-items:center; gap:6px;
+  padding: 9px 14px; border-radius: var(--radius-sm);
+  background: var(--kakao); color: var(--kakao-text);
+  border:none; cursor:pointer; font-size:14px; font-weight:600;
+  font-family: inherit; transition: transform 0.15s, box-shadow 0.15s;
+  margin-right:8px;
+}
+.kakao-header-btn:hover { transform:translateY(-1px); box-shadow: var(--shadow-md); }
+.kakao-header-btn svg { width:18px; height:18px; }
+
+/* ===== MAIN CONTENT ===== */
+.main { max-width:1200px; margin:0 auto; padding:24px; }
+
+/* Section titles */
+.section-title {
+  font-size:24px; font-weight:700; letter-spacing:-0.5px; margin-bottom:16px;
+  display:flex; align-items:center; gap:8px;
+}
+.section-title .dot { width:8px; height:8px; border-radius:50%; }
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display:grid; grid-template-columns: repeat(4,1fr); gap:12px;
+  margin-bottom:24px;
+}
+.stat-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:16px 20px; box-shadow: var(--shadow-sm);
+}
+.stat-label { font-size:14px; color:var(--text-secondary); font-weight:500; margin-bottom:4px; }
+.stat-value { font-size:28px; font-weight:700; letter-spacing:-1px; }
+.stat-value.ai-val { color:var(--ai-color); }
+.stat-value.speech-val { color:var(--speech-color); }
+
+/* ===== CALENDAR ===== */
+.calendar-container {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius-lg); box-shadow: var(--shadow-sm);
+  overflow:hidden; margin-bottom:24px;
+}
+.calendar-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 24px; border-bottom:1px solid var(--border-light);
+}
+.calendar-month { font-size:22px; font-weight:700; letter-spacing:-0.5px; }
+.calendar-nav { display:flex; gap:8px; }
+.cal-nav-btn {
+  width:36px; height:36px; border-radius:var(--radius-sm); border:1px solid var(--border);
+  background:var(--card); cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition: all 0.15s; font-size:16px; color:var(--text-secondary);
+}
+.cal-nav-btn:hover { background:var(--border-light); color:var(--text); }
+
+.calendar-legend {
+  display:flex; gap:16px; padding:12px 24px; background:var(--border-light);
+  border-bottom:1px solid var(--border);
+}
+.legend-item { display:flex; align-items:center; gap:6px; font-size:14px; color:var(--text); font-weight:600; }
+.legend-dot { width:10px; height:10px; border-radius:3px; }
+.legend-dot.ai { background:var(--ai-color); }
+.legend-dot.speech { background:var(--speech-color); }
+.legend-dot.new { background:var(--new-badge); }
+
+.calendar-grid {
+  display:grid; grid-template-columns:repeat(7,1fr);
+}
+.cal-day-header {
+  padding:12px 8px; text-align:center; font-size:15px; font-weight:700;
+  color:var(--text); border-bottom:1px solid var(--border-light);
+  letter-spacing:0.3px;
+}
+.cal-day-header:first-child { color:#DC2626; }
+.cal-day-header:last-child { color:#2563EB; }
+
+.cal-cell {
+  min-height:100px; padding:6px 8px; border:1px solid var(--border-light);
+  cursor:pointer; transition: background 0.15s; position:relative;
+  display:flex; flex-direction:column;
+}
+.cal-cell:hover { background:var(--border-light); }
+.cal-cell.empty { cursor:default; background:transparent; }
+.cal-cell.today { background:#FFFBEB; }
+.cal-cell.selected { background:#F0F9FF; outline:2px solid var(--ai-color); outline-offset:-2px; }
+
+.cal-date {
+  font-size:15px; font-weight:600; margin-bottom:4px;
+  display:flex; align-items:center; gap:4px;
+}
+.cal-cell:nth-child(7n+1) .cal-date { color:#DC2626; }
+.cal-cell:nth-child(7n) .cal-date { color:#2563EB; }
+
+.cal-events { display:flex; flex-direction:column; gap:2px; flex:1; }
+.cal-event {
+  font-size:12px; padding:2px 6px; border-radius:4px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  font-weight:500; line-height:1.4;
+}
+.cal-event.ai { background:var(--ai-bg); color:var(--ai-color); border-left:2px solid var(--ai-color); }
+.cal-event.speech { background:var(--speech-bg); color:var(--speech-color); border-left:2px solid var(--speech-color); }
+.cal-event-more {
+  font-size:10px; color:var(--text-tertiary); font-weight:500;
+  padding:2px 6px; cursor:pointer;
+}
+.new-badge {
+  display:inline-block; font-size:9px; font-weight:700; color:#fff;
+  background:var(--new-badge); border-radius:3px; padding:0 4px;
+  line-height:1.6; letter-spacing:0.3px; vertical-align:middle;
+}
+
+/* ===== FILTER ===== */
+.filter-bar {
+  display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px;
+  padding:16px 20px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); box-shadow:var(--shadow-sm);
+}
+.filter-select, .filter-input {
+  padding:8px 12px; border:1px solid var(--border); border-radius:var(--radius-sm);
+  font-family:inherit; font-size:14px; background:var(--card);
+  color:var(--text); outline:none; transition: border-color 0.15s;
+}
+.filter-select:focus, .filter-input:focus { border-color:var(--ai-color); }
+.filter-reset {
+  padding:8px 16px; border:1px solid var(--border); border-radius:var(--radius-sm);
+  background:transparent; cursor:pointer; font-family:inherit; font-size:14px;
+  color:var(--text-secondary); transition:all 0.15s;
+}
+.filter-reset:hover { background:var(--border-light); color:var(--text); }
+
+/* ===== DAY DETAIL PANEL ===== */
+.day-detail {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md); margin-bottom:24px; overflow:hidden;
+  animation: slideDown 0.25s ease;
+}
+@keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+.day-detail-header {
+  padding:16px 24px; border-bottom:1px solid var(--border-light);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.day-detail-title { font-size:20px; font-weight:700; }
+.day-detail-close {
+  width:32px; height:32px; border-radius:50%; border:1px solid var(--border);
+  background:transparent; cursor:pointer; font-size:18px; color:var(--text-secondary);
+  display:flex; align-items:center; justify-content:center;
+  transition:all 0.15s;
+}
+.day-detail-close:hover { background:var(--border-light); color:var(--text); }
+
+.class-card {
+  padding:16px 24px; border-bottom:1px solid var(--border-light);
+  display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:center;
+  transition:background 0.15s; cursor:pointer;
+}
+.class-card:hover { background:var(--border-light); }
+.class-card:last-child { border-bottom:none; }
+
+.class-type-badge {
+  padding:4px 10px; border-radius:6px; font-size:14px; font-weight:700;
+  white-space:nowrap; letter-spacing:0.3px;
+}
+.class-type-badge.ai { background:var(--ai-bg); color:var(--ai-color); }
+.class-type-badge.speech { background:var(--speech-bg); color:var(--speech-color); }
+
+.class-info { }
+.class-dept { font-size:17px; font-weight:600; margin-bottom:2px; display:flex; align-items:center; gap:6px; }
+.class-meta { font-size:15px; color:var(--text-secondary); display:flex; gap:12px; flex-wrap:wrap; }
+.class-meta span { display:flex; align-items:center; gap:4px; }
+.class-students { font-size:16px; font-weight:600; color:var(--text-secondary); white-space:nowrap; }
+
+/* ===== DEPT MODAL ===== */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:200;
+  display:flex; align-items:center; justify-content:center; padding:24px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+.modal {
+  background:var(--card); border-radius:var(--radius-lg); width:100%; max-width:560px;
+  max-height:80vh; overflow-y:auto; box-shadow:var(--shadow-lg);
+  animation: modalIn 0.25s ease;
+}
+@keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+
+.modal-header {
+  padding:24px; border-bottom:1px solid var(--border-light);
+  display:flex; justify-content:space-between; align-items:flex-start;
+}
+.modal-dept-name { font-size:24px; font-weight:700; letter-spacing:-0.5px; }
+.modal-dept-sub { font-size:15px; color:var(--text-secondary); margin-top:4px; }
+.modal-close {
+  width:36px; height:36px; border-radius:50%; border:1px solid var(--border);
+  background:transparent; cursor:pointer; font-size:18px; color:var(--text-secondary);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  transition:all 0.15s;
+}
+.modal-close:hover { background:var(--border-light); color:var(--text); }
+
+.modal-section { padding:20px 24px; border-bottom:1px solid var(--border-light); }
+.modal-section:last-child { border-bottom:none; }
+.modal-section-title { font-size:13px; font-weight:600; color:var(--text-secondary); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; }
+
+.modal-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.modal-info-item { }
+.modal-info-label { font-size:13px; color:var(--text-tertiary); font-weight:500; }
+.modal-info-value { font-size:16px; font-weight:500; margin-top:2px; }
+
+.modal-schedule { display:flex; flex-direction:column; gap:10px; }
+.modal-sched-item {
+  padding:12px; border-radius:var(--radius-sm); display:flex; gap:12px; align-items:flex-start;
+}
+.modal-sched-item.ai { background:var(--ai-bg); }
+.modal-sched-item.speech { background:var(--speech-bg); }
+.modal-sched-tag { font-size:11px; font-weight:700; white-space:nowrap; padding:2px 8px; border-radius:4px; }
+.modal-sched-tag.ai { background:var(--ai-color); color:#fff; }
+.modal-sched-tag.speech { background:var(--speech-color); color:#fff; }
+.modal-sched-detail { font-size:15px; line-height:1.5; }
+.modal-sched-detail strong { font-weight:600; }
+
+/* ===== TABS ===== */
+.tab-section {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;
+}
+.tab-card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm); overflow:hidden;
+}
+.tab-card-header {
+  padding:16px 20px; border-bottom:1px solid var(--border-light);
+  font-size:19px; font-weight:700; display:flex; align-items:center; gap:8px;
+}
+.tab-card-header .icon { font-size:20px; }
+.tab-card-body { padding:16px 20px; }
+
+.resource-tabs { display:flex; gap:4px; margin-bottom:12px; }
+.resource-tab {
+  padding:6px 14px; border-radius:6px; border:1px solid var(--border);
+  background:transparent; cursor:pointer; font-size:14px; font-weight:600;
+  font-family:inherit; transition:all 0.15s; color:var(--text-secondary);
+}
+.resource-tab.active-ai { background:var(--ai-bg); color:var(--ai-color); border-color:var(--ai-color); }
+.resource-tab.active-speech { background:var(--speech-bg); color:var(--speech-color); border-color:var(--speech-color); }
+
+.resource-link {
+  display:flex; align-items:center; gap:10px; padding:10px 12px;
+  border:1px solid var(--border-light); border-radius:var(--radius-sm);
+  margin-bottom:8px; text-decoration:none; color:var(--text);
+  transition:all 0.15s;
+}
+.resource-link:hover { border-color:var(--ai-color); background:var(--ai-bg); }
+.resource-icon { width:32px; height:32px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.resource-icon.canva { background:#7B2FF2; color:#fff; }
+.resource-icon.gdrive { background:#34A853; color:#fff; }
+.resource-icon.gform { background:#673AB7; color:#fff; }
+.resource-name { font-size:15px; font-weight:500; }
+.resource-desc { font-size:13px; color:var(--text-secondary); }
+
+.survey-link {
+  display:flex; align-items:center; gap:10px; padding:12px;
+  border:1px solid var(--border-light); border-radius:var(--radius-sm);
+  margin-bottom:8px; text-decoration:none; color:var(--text); transition:all 0.15s;
+}
+.survey-link:hover { border-color:#673AB7; background:#F3E8FF; }
+
+/* ===== FLOATING KAKAO ===== */
+.kakao-float {
+  position:fixed; bottom:24px; right:24px; z-index:150;
+  width:56px; height:56px; border-radius:50%; background:var(--kakao);
+  border:none; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.15);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.kakao-float:hover { transform:translateY(-3px) scale(1.05); box-shadow:0 6px 24px rgba(0,0,0,0.2); }
+.kakao-float svg { width:28px; height:28px; }
+
+/* ===== FOOTER ===== */
+.footer {
+  max-width:1200px; margin:0 auto; padding:24px;
+  border-top:1px solid var(--border); text-align:center;
+  font-size:13px; color:var(--text-tertiary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px) {
+  .header-inner { height:56px; }
+  .header-nav { display:none; }
+  .stats-bar { grid-template-columns:repeat(2,1fr); }
+  .cal-cell { min-height:70px; padding:4px; }
+  .cal-event { font-size:9px; padding:1px 4px; }
+  .tab-section { grid-template-columns:1fr; }
+  .filter-bar { flex-direction:column; }
+  .class-card { grid-template-columns:1fr; gap:8px; }
+  .modal-info-grid { grid-template-columns:1fr; }
+}
+
+/* Map link */
+.map-link {
+  cursor:pointer; text-decoration:underline; text-decoration-style:dotted;
+  text-underline-offset:2px; color:var(--ai-color); transition:color 0.15s;
+}
+.map-link:hover { color:var(--accent); text-decoration-style:solid; }
+
+/* ===== DEPT PANEL ===== */
+.dept-panel {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm); margin-bottom:24px; overflow:hidden;
+}
+.dept-panel-header {
+  padding:16px 24px; border-bottom:1px solid var(--border-light);
+  font-size:18px; font-weight:700; display:flex; align-items:center; gap:8px;
+}
+.dept-panel-body {
+  display:grid; grid-template-columns:280px 1fr; min-height:320px;
+}
+.dept-sidebar {
+  border-right:1px solid var(--border-light); padding:12px; overflow-y:auto; max-height:500px;
+}
+.dept-cat-label {
+  font-size:11px; font-weight:700; color:var(--text-tertiary); padding:8px 8px 4px;
+  text-transform:uppercase; letter-spacing:0.5px;
+}
+.dept-btn {
+  display:block; width:100%; text-align:left; padding:8px 12px; border:none;
+  background:transparent; cursor:pointer; font-family:inherit; font-size:15px;
+  color:var(--text-secondary); border-radius:var(--radius-sm); transition:all 0.15s;
+  margin-bottom:2px; font-weight:500;
+}
+.dept-btn:hover { background:var(--border-light); color:var(--text); }
+.dept-btn.active { background:var(--accent); color:#fff; }
+.dept-detail-area {
+  padding:24px; display:flex; flex-direction:column; justify-content:center;
+}
+.dept-detail-empty {
+  text-align:center; color:var(--text-tertiary); font-size:16px;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.dept-detail-empty .icon { font-size:32px; }
+.dept-detail-name {
+  font-size:22px; font-weight:700; margin-bottom:4px; letter-spacing:-0.3px;
+}
+.dept-detail-cat {
+  font-size:12px; color:var(--text-tertiary); margin-bottom:16px; font-weight:500;
+}
+.dept-detail-desc {
+  font-size:16px; color:var(--text-secondary); line-height:1.8; margin-bottom:20px;
+}
+.dept-detail-stats {
+  display:flex; gap:12px; flex-wrap:wrap;
+}
+.dept-detail-stat {
+  padding:8px 14px; border-radius:var(--radius-sm); font-size:13px; font-weight:600;
+}
+.dept-detail-stat.ai { background:var(--ai-bg); color:var(--ai-color); }
+.dept-detail-stat.speech { background:var(--speech-bg); color:var(--speech-color); }
+.dept-detail-stat.neutral { background:var(--border-light); color:var(--text-secondary); }
+.dept-detail-more {
+  margin-top:16px; padding:10px 20px; border:1px solid var(--accent); color:var(--accent);
+  background:transparent; border-radius:var(--radius-sm); cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:600; transition:all 0.15s;
+  align-self:flex-start;
+}
+.dept-detail-more:hover { background:var(--accent); color:#fff; }
+
+@media(max-width:768px) {
+  .dept-panel-body { grid-template-columns:1fr; }
+  .dept-sidebar { max-height:200px; border-right:none; border-bottom:1px solid var(--border-light); }
+}
+
+/* Hidden utility */
+.hidden { display:none !important; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-mark">YNC</div>
+      <div class="logo-text">2026 신입생 교육 강사 허브</div>
+    </div>
+    <nav class="header-nav">
+      <button class="nav-btn active" onclick="scrollToSection('calendar')">캘린더</button>
+      <button class="nav-btn" onclick="scrollToSection('resources')">강의안</button>
+      <button class="nav-btn" onclick="scrollToSection('dept-panel')">학과</button>
+      <button class="nav-btn" onclick="scrollToSection('survey')">설문</button>
+    </nav>
+    <button class="kakao-header-btn" onclick="openKakao()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.88 1.87 5.41 4.7 6.83-.15.56-.97 3.6-.99 3.83 0 0-.02.17.09.24.11.06.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.54.08 1.1.12 1.68.12 5.5 0 10-3.58 10-8S17.5 3 12 3z"/></svg>
+      팀채팅
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main" id="app">
+</main>
+
+<!-- FLOATING KAKAO -->
+<button class="kakao-float" onclick="openKakao()" title="카카오톡 채널">
+  <svg viewBox="0 0 24 24" fill="#191919"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.88 1.87 5.41 4.7 6.83-.15.56-.97 3.6-.99 3.83 0 0-.02.17.09.24.11.06.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.54.08 1.1.12 1.68.12 5.5 0 10-3.58 10-8S17.5 3 12 3z"/></svg>
+</button>
+
+<script>
+// ===== DATA =====
+const classData = [
+  // AI활용
+  {dept:"관광서비스계열",date:"2026-04-01",day:"수",time:"09:00~09:50",period:"1교시",place:"사회관 3층 멀티콘텐츠실",prof:"김현주",phone:"053-650-9709",students:28,type:"ai"},
+  {dept:"글로벌외식조리과",date:"2026-04-01",day:"수",time:"14:00~14:50",period:"6교시",place:"예지관 4층 3403",prof:"서지형",phone:"053-650-9346",students:30,type:"ai"},
+  {dept:"글로벌외식조리과",date:"2026-04-01",day:"수",time:"14:00~14:50",period:"6교시",place:"예지관 4층 3402",prof:"이경수",phone:"053-650-9345",students:25,type:"ai"},
+  {dept:"소프트웨어융합과",date:"2026-04-01",day:"수",time:"11:00~11:50",period:"3교시",place:"컴퓨터정보관 3층 데이터베이스실습실",prof:"이명섭",phone:"053-650-9254",students:21,type:"ai"},
+  {dept:"소프트웨어융합과",date:"2026-04-01",day:"수",time:"10:00~10:50",period:"2교시",place:"컴퓨터정보관 4층 데이터베이스실습실",prof:"이명섭",phone:"053-650-9254",students:22,type:"ai"},
+  {dept:"사회복지학과",date:"2026-04-01",day:"수",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 9층 1093호",prof:"허정민",phone:"053-650-9499",students:32,type:"ai"},
+  {dept:"관광서비스계열",date:"2026-04-04",day:"토",time:"10:00~10:50",period:"2교시",place:"협동관 2층 외국어교육실",prof:"김한주",phone:"053-650-9624",students:16,type:"ai"},
+  {dept:"물리치료과",date:"2026-04-06",day:"월",time:"10:00~10:50",period:"2교시",place:"인애관 3층 기능훈련실",prof:"권용현",phone:"053-650-9702",students:36,type:"ai"},
+  {dept:"물리치료과",date:"2026-04-06",day:"월",time:"13:00~13:50",period:"5교시",place:"인애관 3층 기능훈련실",prof:"권용현",phone:"053-650-9702",students:37,type:"ai"},
+  {dept:"반려동물스타일리스트과",date:"2026-04-06",day:"월",time:"10:00~10:50",period:"2교시",place:"사회관 3층 멀티미디어실",prof:"김경희",phone:"053-650-9601",students:33,type:"ai"},
+  {dept:"K-뷰티과",date:"2026-04-06",day:"월",time:"17:00~17:50",period:"9교시",place:"미래관 4층 뷰티스타일링실",prof:"당수민",phone:"053-650-9339",students:34,type:"ai"},
+  {dept:"스마트e-자동차과",date:"2026-04-06",day:"월",time:"17:00~17:50",period:"9교시",place:"희망광 4층 8403 강의실",prof:"류경진",phone:"053-650-9236",students:43,type:"ai"},
+  {dept:"스마트융합기계계열",date:"2026-04-06",day:"월",time:"17:00~17:50",period:"9교시",place:"기계공학관 3층 CATIA실",prof:"장운근",phone:"053-650-9229",students:35,type:"ai"},
+  {dept:"사회복지서비스학과",date:"2026-04-07",day:"화",time:"09:30~10:20",period:"",place:"천마스퀘어 6층 1061 강의실",prof:"고강호",phone:"053-650-9364",students:29,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"18:50~19:40",period:"",place:"천마스퀘어 6층 1061 강의실",prof:"박선란",phone:"053-650-9706",students:26,type:"ai"},
+  {dept:"사회복지서비스학과",date:"2026-04-07",day:"화",time:"13:00~13:50",period:"5교시",place:"천마스퀘어 6층 1062 강의실",prof:"박선란",phone:"053-650-9706",students:33,type:"ai"},
+  {dept:"인테리어디자인과",date:"2026-04-07",day:"화",time:"14:00~14:50",period:"6교시",place:"산학협력관 1층 디자인스튜디오",prof:"변창수",phone:"053-650-9601",students:26,type:"ai"},
+  {dept:"모델테이너과",date:"2026-04-07",day:"화",time:"13:00~13:50",period:"5교시",place:"천마스퀘어 9층 1093 강의실",prof:"안경미",phone:"053-650-9601",students:23,type:"ai"},
+  {dept:"사회복지서비스학과",date:"2026-04-07",day:"화",time:"09:30~10:20",period:"",place:"천마스퀘어 8층 1084 강의실",prof:"안지민",phone:"053-650-9362",students:34,type:"ai"},
+  {dept:"반려동물보건과",date:"2026-04-07",day:"화",time:"10:00~10:50",period:"2교시",place:"사회관 3층 멀티컨텐츠실",prof:"윤은희",phone:"053-650-9601",students:25,type:"ai"},
+  {dept:"ICT반도체전자계열",date:"2026-04-07",day:"화",time:"17:00~17:50",period:"9교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:19,type:"ai"},
+  {dept:"ICT반도체전자계열",date:"2026-04-07",day:"화",time:"10:00~10:50",period:"2교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:19,type:"ai"},
+  {dept:"ICT반도체전자계열",date:"2026-04-07",day:"화",time:"16:00~16:50",period:"8교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:16,type:"ai"},
+  {dept:"화장품화공계열",date:"2026-04-07",day:"화",time:"15:00~15:50",period:"7교시",place:"미래관 5층 257호 강의실",prof:"이종민",phone:"053-650-9601",students:35,type:"ai"},
+  {dept:"화장품화공계열",date:"2026-04-07",day:"화",time:"14:00~14:50",period:"6교시",place:"미래관 5층 258호 강의실",prof:"이철재",phone:"053-650-9601",students:36,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"19:45~20:35",period:"",place:"천마스퀘어 6층 1062 강의실",prof:"전선민",phone:"053-650-9708",students:24,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"13:00~13:50",period:"5교시",place:"천마스퀘어 6층 1082 강의실",prof:"정희열",phone:"053-650-9406",students:31,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"18:50~19:40",period:"",place:"천마스퀘어 6층 1063 강의실",prof:"안지민",phone:"053-650-9362",students:25,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"20:25~21:15",period:"",place:"천마스퀘어 8층 1082 강의실",prof:"안지민",phone:"053-650-9362",students:23,type:"ai"},
+  {dept:"박승철헤어과",date:"2026-04-08",day:"수",time:"15:00~15:50",period:"7교시",place:"미래관 4층 253호 강의실",prof:"이다해",phone:"053-650-9601",students:39,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"09:30~10:20",period:"",place:"천마스퀘어 6층 1063 강의실",prof:"이윤진",phone:"053-650-9673",students:31,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"09:30~10:20",period:"",place:"천마스퀘어 8층 1083 강의실",prof:"이하예진",phone:"053-650-9476",students:31,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"18:50~19:40",period:"",place:"천마스퀘어 8층 1084 강의실",prof:"이하예진",phone:"053-650-9601",students:20,type:"ai"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"18:50~19:40",period:"",place:"천마스퀘어 8층 1083 강의실",prof:"정희열",phone:"053-650-9406",students:28,type:"ai"},
+  {dept:"스마트융합기계계열",date:"2026-04-09",day:"목",time:"09:00~09:50",period:"1교시",place:"기계공학관 4층 일학습기업관 2",prof:"박재훈",phone:"053-650-9228",students:25,type:"ai"},
+  {dept:"스마트융합기계계열",date:"2026-04-09",day:"목",time:"09:00~09:50",period:"1교시",place:"기계공학관 4층 일학습기업관 1",prof:"이재창",phone:"053-650-9601",students:23,type:"ai"},
+  {dept:"패션디자인마케팅과",date:"2026-04-09",day:"목",time:"12:00~12:50",period:"4교시",place:"예지관2층 패션스튜디오",prof:"정현",phone:"053-650-9601",students:39,type:"ai"},
+  {dept:"건설시스템과",date:"2026-04-09",day:"목",time:"13:00~13:50",period:"5교시",place:"창조관 멀티미디어실",prof:"조현경",phone:"053-650-9601",students:15,type:"ai"},
+  {dept:"시각영상디자인과",date:"2026-04-10",day:"금",time:"12:00~12:50",period:"4교시",place:"천마스퀘어 3층 1033호 강의실",prof:"정재한",phone:"053-650-9601",students:24,type:"ai"},
+  {dept:"i-경영회계계열",date:"2026-04-13",day:"월",time:"13:00~13:50",period:"5교시",place:"사회관 2층 723 강의실",prof:"김예은",phone:"053-650-9601",students:35,type:"ai"},
+  {dept:"스포츠재활과",date:"2026-04-13",day:"월",time:"12:00~13:00",period:"4교시",place:"글로벌하우스 2층 재활운동실",prof:"남승민",phone:"053-650-9601",students:18,type:"ai"},
+  {dept:"스포츠재활과",date:"2026-04-13",day:"월",time:"13:00~14:00",period:"5교시",place:"글로벌하우스 2층 재활운동실",prof:"남승민",phone:"053-650-9601",students:19,type:"ai"},
+  {dept:"웹툰과",date:"2026-04-13",day:"월",time:"12:00~12:50",period:"4교시",place:"천마스퀘어 3층 1033 강의실",prof:"박재윤",phone:"053-650-9601",students:28,type:"ai"},
+  {dept:"치위생과",date:"2026-04-13",day:"월",time:"09:00~09:50",period:"1교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:35,type:"ai"},
+  {dept:"치위생과",date:"2026-04-13",day:"월",time:"10:00~10:50",period:"2교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:36,type:"ai"},
+  {dept:"치위생과",date:"2026-04-13",day:"월",time:"12:00~12:50",period:"4교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:35,type:"ai"},
+  {dept:"패션디자인마케팅과",date:"2026-04-13",day:"월",time:"17:00~17:50",period:"9교시",place:"예지관2층 라이브스튜디오",prof:"정현",phone:"053-650-9601",students:24,type:"ai"},
+  {dept:"게임애니메이션과",date:"2026-04-13",day:"월",time:"16:00~16:50",period:"8교시",place:"인애관 1층 컴퓨터그래픽실",prof:"홍성안",phone:"053-650-9601",students:21,type:"ai"},
+  {dept:"전기자동화과",date:"2026-04-14",day:"화",time:"11:00~11:50",period:"3교시",place:"전기관 4층 642 강의실",prof:"유원근",phone:"053-650-9601",students:42,type:"ai"},
+  {dept:"사이버보안과",date:"2026-04-14",day:"화",time:"11:00~11:50",period:"3교시",place:"산학협력관 2층 정보보안실습실",prof:"전두용",phone:"053-650-9601",students:16,type:"ai"},
+  {dept:"사이버보안과",date:"2026-04-14",day:"화",time:"13:00~13:50",period:"5교시",place:"산학협력관 2층 정보보안실습실",prof:"전두용",phone:"053-650-9601",students:14,type:"ai"},
+  {dept:"간호학과",date:"2026-04-14",day:"화",time:"11:00~11:50",period:"3교시",place:"천마스퀘어 7층 1071 강의실",prof:"최은희",phone:"053-650-9601",students:42,type:"ai"},
+  {dept:"관광서비스계열",date:"2026-04-15",day:"수",time:"16:00~16:50",period:"8교시",place:"사회관 3층 멀티콘텐츠실",prof:"권재일",phone:"053-650-9601",students:21,type:"ai"},
+  {dept:"전기자동화과",date:"2026-04-15",day:"수",time:"11:00~11:50",period:"3교시",place:"전기관 4층 641 강의실",prof:"송현직",phone:"053-650-9601",students:40,type:"ai"},
+  {dept:"전기자동화과",date:"2026-04-15",day:"수",time:"14:00~14:50",period:"6교시",place:"전기관 4층 643 강의실",prof:"최정원",phone:"053-650-9601",students:40,type:"ai"},
+  {dept:"간호학과",date:"2026-04-16",day:"목",time:"16:00~16:50",period:"8교시",place:"천마스퀘어 7층 1076 강의실",prof:"백규리",phone:"053-650-9601",students:41,type:"ai"},
+  {dept:"간호학과",date:"2026-04-16",day:"목",time:"11:00~11:50",period:"3교시",place:"천마스퀘어 7층 1074 강의실",prof:"최은희",phone:"053-650-9601",students:41,type:"ai"},
+  {dept:"보건의료행정과",date:"2026-04-16",day:"목",time:"14:00~14:50",period:"6교시",place:"미래관 3층 보건코디정보처리실",prof:"김윤정",phone:"053-650-9601",students:37,type:"ai"},
+  {dept:"건축학과",date:"2026-04-20",day:"월",time:"14:00~14:50",period:"6교시",place:"창조관 1층 시청각실",prof:"김승호",phone:"053-650-9601",students:50,type:"ai"},
+  {dept:"간호학과",date:"2026-04-20",day:"월",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 7층 1073 강의실",prof:"백규리",phone:"053-650-9601",students:42,type:"ai"},
+  {dept:"간호학과",date:"2026-04-20",day:"월",time:"14:00~14:50",period:"6교시",place:"천마스퀘어 7층 1072 강의실",prof:"장수현",phone:"053-650-9601",students:41,type:"ai"},
+  {dept:"간호학과",date:"2026-04-20",day:"월",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 7층 1075 강의실",prof:"장수현",phone:"053-650-9601",students:40,type:"ai"},
+  {dept:"글로벌베이커리과",date:"2026-04-20",day:"월",time:"16:00~16:50",period:"8교시",place:"예지관 4층 3404강의실",prof:"정현채",phone:"053-650-9601",students:38,type:"ai"},
+  {dept:"공공조달학과",date:"2026-04-25",day:"토",time:"16:30~17:30",period:"",place:"사회관 3층 전자상거래실",prof:"김예은",phone:"053-650-9601",students:42,type:"ai"},
+
+  // 1분 실전 스피치
+  {dept:"스마트융합기계계열",date:"2026-04-06",day:"월",time:"14:00~14:50",period:"6교시",place:"기계공학관 4층 일학습기업관 1",prof:"박재훈",phone:"053-650-9228",students:35,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"10:30~11:20",period:"",place:"천마스퀘어 6층 1061 강의실",prof:"고강호",phone:"053-650-9364",students:29,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"14:00~14:50",period:"",place:"천마스퀘어 6층 1062 강의실",prof:"박선란",phone:"053-650-9706",students:33,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"10:30~11:20",period:"",place:"천마스퀘어 8층 1084 강의실",prof:"안지민",phone:"053-650-9362",students:34,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"14:00~14:50",period:"",place:"천마스퀘어 6층 1082 강의실",prof:"정희열",phone:"053-650-9406",students:31,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"19:45~20:35",period:"",place:"천마스퀘어 6층 1061 강의실",prof:"박선란",phone:"053-650-9706",students:26,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-07",day:"화",time:"20:40~21:35",period:"",place:"천마스퀘어 6층 1062 강의실",prof:"전선민",phone:"053-650-9708",students:24,type:"speech"},
+  {dept:"관광서비스계열",date:"2026-04-08",day:"수",time:"09:00~09:50",period:"1교시",place:"사회관 3층 멀티콘텐츠실",prof:"김현주",phone:"053-650-9709",students:28,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"10:30~11:20",period:"",place:"천마스퀘어 6층 1063 강의실",prof:"이윤진",phone:"053-650-9673",students:31,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"19:45~20:35",period:"",place:"천마스퀘어 6층 1063 강의실",prof:"안지민",phone:"053-650-9362",students:25,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"10:30~11:20",period:"",place:"천마스퀘어 8층 1083 강의실",prof:"이하예진",phone:"053-650-9476",students:31,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"21:20~22:10",period:"",place:"천마스퀘어 8층 1082 강의실",prof:"안지민",phone:"053-650-9362",students:23,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"19:45~20:35",period:"",place:"천마스퀘어 8층 1083 강의실",prof:"정희열",phone:"053-650-9406",students:28,type:"speech"},
+  {dept:"사회복지서비스과",date:"2026-04-08",day:"수",time:"19:45~20:35",period:"",place:"천마스퀘어 8층 1084 강의실",prof:"이하예진",phone:"053-650-9476",students:20,type:"speech"},
+  {dept:"소프트웨어융합과",date:"2026-04-08",day:"수",time:"11:00~11:50",period:"3교시",place:"컴퓨터정보관 5층 데이터베이스실습실",prof:"이명섭",phone:"053-650-9254",students:21,type:"speech"},
+  {dept:"소프트웨어융합과",date:"2026-04-08",day:"수",time:"10:00~10:50",period:"2교시",place:"컴퓨터정보관 6층 데이터베이스실습실",prof:"이명섭",phone:"053-650-9254",students:22,type:"speech"},
+  {dept:"스마트융합기계계열",date:"2026-04-09",day:"목",time:"10:00~10:50",period:"2교시",place:"기계공학관 4층 일학습기업관 1",prof:"박재훈",phone:"053-650-9228",students:23,type:"speech"},
+  {dept:"스마트융합기계계열",date:"2026-04-09",day:"목",time:"14:00~14:50",period:"6교시",place:"기계공학관 4층 일학습기업관 2",prof:"박재훈",phone:"053-650-9228",students:25,type:"speech"},
+  {dept:"관광서비스계열",date:"2026-04-11",day:"토",time:"10:00~10:50",period:"2교시",place:"협동관 2층 외국어교육실",prof:"김한주",phone:"053-650-9624",students:16,type:"speech"},
+  {dept:"K-뷰티과",date:"2026-04-13",day:"월",time:"17:00~17:50",period:"9교시",place:"미래관 4층 뷰티스타일링실",prof:"당수민",phone:"053-650-9339",students:34,type:"speech"},
+  {dept:"물리치료과",date:"2026-04-13",day:"월",time:"10:00~10:50",period:"2교시",place:"인애관 3층 기능훈련실",prof:"권용현",phone:"053-650-9702",students:36,type:"speech"},
+  {dept:"물리치료과",date:"2026-04-13",day:"월",time:"13:00~13:50",period:"5교시",place:"인애관 3층 기능훈련실",prof:"권용현",phone:"053-650-9702",students:37,type:"speech"},
+  {dept:"스마트e-자동차과",date:"2026-04-13",day:"월",time:"17:00~17:50",period:"9교시",place:"희망광 4층 8403 강의실",prof:"류경진",phone:"053-650-9236",students:43,type:"speech"},
+  {dept:"ICT반도체전자계열",date:"2026-04-14",day:"화",time:"17:00~17:50",period:"9교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:19,type:"speech"},
+  {dept:"ICT반도체전자계열",date:"2026-04-14",day:"화",time:"10:00~10:50",period:"2교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:19,type:"speech"},
+  {dept:"ICT반도체전자계열",date:"2026-04-14",day:"화",time:"16:00~16:50",period:"8교시",place:"전자관 2층 PC실",prof:"이영신",phone:"053-650-9601",students:16,type:"speech"},
+  {dept:"모델테이너과",date:"2026-04-14",day:"화",time:"13:00~13:50",period:"5교시",place:"천마스퀘어 9층 1093 강의실",prof:"안경미",phone:"053-650-9601",students:23,type:"speech"},
+  {dept:"반려동물보건과",date:"2026-04-14",day:"화",time:"10:00~10:50",period:"2교시",place:"사회관 3층 멀티컨텐츠실",prof:"윤은희",phone:"053-650-9601",students:25,type:"speech"},
+  {dept:"인테리어디자인과",date:"2026-04-14",day:"화",time:"14:00~14:50",period:"6교시",place:"산학협력관1층 디자인스튜디오",prof:"변창수",phone:"053-650-9601",students:26,type:"speech"},
+  {dept:"전기자동화과",date:"2026-04-14",day:"화",time:"12:00~12:50",period:"4교시",place:"전기관 4층 642 강의실",prof:"유원근",phone:"053-650-9601",students:42,type:"speech"},
+  {dept:"화장품화공계열",date:"2026-04-14",day:"화",time:"14:00~14:50",period:"6교시",place:"미래관 5층 258호 강의실",prof:"이철재",phone:"053-650-9601",students:36,type:"speech"},
+  {dept:"화장품화공계열",date:"2026-04-14",day:"화",time:"15:00~15:50",period:"7교시",place:"미래관 5층 257호 강의실",prof:"이종민",phone:"053-650-9601",students:35,type:"speech"},
+  {dept:"박승철헤어과",date:"2026-04-15",day:"수",time:"15:00~15:50",period:"7교시",place:"미래관 4층 253호 강의실",prof:"이다해",phone:"053-650-9601",students:39,type:"speech"},
+  {dept:"전기자동화과",date:"2026-04-15",day:"수",time:"12:00~12:50",period:"4교시",place:"전기관 4층 641 강의실",prof:"송현직",phone:"053-650-9601",students:40,type:"speech"},
+  {dept:"전기자동화과",date:"2026-04-15",day:"수",time:"15:00~15:50",period:"7교시",place:"전기관 4층 643 강의실",prof:"최정원",phone:"053-650-9601",students:40,type:"speech"},
+  {dept:"건설시스템과",date:"2026-04-16",day:"목",time:"13:00~13:50",period:"5교시",place:"창조관 멀티미디어실",prof:"조현경",phone:"053-650-9601",students:15,type:"speech"},
+  {dept:"패션디자인마케팅과",date:"2026-04-16",day:"목",time:"12:00~12:50",period:"4교시",place:"예지관2층 패션스튜디오",prof:"정현",phone:"053-650-9601",students:39,type:"speech"},
+  {dept:"i-경영회계계열",date:"2026-04-20",day:"월",time:"13:00~13:50",period:"5교시",place:"사회관 2층 723 강의실",prof:"김예은",phone:"053-650-9601",students:35,type:"speech"},
+  {dept:"게임애니메이션과",date:"2026-04-20",day:"월",time:"16:00~16:50",period:"8교시",place:"인애관 1층 컴퓨터그래픽실",prof:"홍성안",phone:"053-650-9601",students:21,type:"speech"},
+  {dept:"반려동물스타일리스트과",date:"2026-04-20",day:"월",time:"10:00~10:50",period:"2교시",place:"사회관 3층 멀티미디어실",prof:"김경희",phone:"053-650-9601",students:33,type:"speech"},
+  {dept:"스포츠재활과",date:"2026-04-20",day:"월",time:"12:00~13:00",period:"4교시",place:"글로벌하우스 2층 재활운동실",prof:"남승민",phone:"053-650-9601",students:18,type:"speech"},
+  {dept:"스포츠재활과",date:"2026-04-20",day:"월",time:"13:00~14:00",period:"5교시",place:"글로벌하우스 2층 재활운동실",prof:"남승민",phone:"053-650-9601",students:19,type:"speech"},
+  {dept:"웹툰과",date:"2026-04-20",day:"월",time:"12:00~12:50",period:"4교시",place:"천마스퀘어 3층 1033 강의실",prof:"박재윤",phone:"053-650-9601",students:28,type:"speech"},
+  {dept:"패션디자인마케팅과",date:"2026-04-20",day:"월",time:"17:00~17:50",period:"9교시",place:"예지관2층 라이브스튜디오",prof:"정현",phone:"053-650-9601",students:24,type:"speech"},
+  {dept:"시각영상디자인과",date:"2026-04-24",day:"금",time:"12:00~12:50",period:"4교시",place:"천마스퀘어 3층 1033호 강의실",prof:"정재한",phone:"053-650-9601",students:24,type:"speech"},
+  {dept:"치위생과",date:"2026-04-27",day:"월",time:"09:00~09:50",period:"1교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:35,type:"speech"},
+  {dept:"치위생과",date:"2026-04-27",day:"월",time:"10:00~10:50",period:"2교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:36,type:"speech"},
+  {dept:"치위생과",date:"2026-04-27",day:"월",time:"12:00~12:50",period:"4교시",place:"인애관 4층 4402호 강의실",prof:"심은비",phone:"053-650-9601",students:35,type:"speech"},
+  {dept:"간호학과",date:"2026-04-28",day:"화",time:"11:00~11:50",period:"3교시",place:"천마스퀘어 7층 1071 강의실",prof:"최은희",phone:"053-650-9601",students:42,type:"speech"},
+  {dept:"사이버보안과",date:"2026-04-28",day:"화",time:"11:00~11:50",period:"3교시",place:"산학협력관 2층 정보보안실습실",prof:"전두용",phone:"053-650-9601",students:16,type:"speech"},
+  {dept:"사이버보안과",date:"2026-04-28",day:"화",time:"13:00~13:50",period:"5교시",place:"산학협력관 2층 정보보안실습실",prof:"전두용",phone:"053-650-9601",students:14,type:"speech"},
+  {dept:"관광서비스계열",date:"2026-04-29",day:"수",time:"16:00~16:50",period:"8교시",place:"사회관 3층 멀티콘텐츠실",prof:"권재일",phone:"053-650-9601",students:21,type:"speech"},
+  {dept:"글로벌외식조리과",date:"2026-04-29",day:"수",time:"14:00~14:50",period:"6교시",place:"예지관 4층 3402",prof:"이경수",phone:"053-650-9345",students:25,type:"speech"},
+  {dept:"글로벌외식조리과",date:"2026-04-29",day:"수",time:"14:00~14:50",period:"6교시",place:"예지관 4층 3403",prof:"서지형",phone:"053-650-9346",students:30,type:"speech"},
+  {dept:"사회복지학과",date:"2026-04-29",day:"수",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 9층 1093호",prof:"허정민",phone:"053-650-9499",students:32,type:"speech"},
+  {dept:"간호학과",date:"2026-04-30",day:"목",time:"11:00~11:50",period:"3교시",place:"천마스퀘어 7층 1074 강의실",prof:"최은희",phone:"053-650-9601",students:41,type:"speech"},
+  {dept:"간호학과",date:"2026-04-30",day:"목",time:"16:00~16:50",period:"8교시",place:"천마스퀘어 7층 1076 강의실",prof:"백규리",phone:"053-650-9601",students:41,type:"speech"},
+  {dept:"보건의료행정과",date:"2026-04-30",day:"목",time:"14:00~14:50",period:"6교시",place:"미래관 3층 보건코디정보처리실",prof:"김윤정",phone:"053-650-9601",students:37,type:"speech"},
+  {dept:"건축학과",date:"2026-05-04",day:"월",time:"14:00~14:50",period:"6교시",place:"창조관 1층 시청각실",prof:"김승호",phone:"053-650-9601",students:50,type:"speech"},
+  {dept:"간호학과",date:"2026-05-11",day:"월",time:"14:00~14:50",period:"6교시",place:"천마스퀘어 7층 1072 강의실",prof:"장수현",phone:"053-650-9601",students:41,type:"speech"},
+  {dept:"간호학과",date:"2026-05-11",day:"월",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 7층 1073 강의실",prof:"백규리",phone:"053-650-9601",students:42,type:"speech"},
+  {dept:"간호학과",date:"2026-05-11",day:"월",time:"15:00~15:50",period:"7교시",place:"천마스퀘어 7층 1075 강의실",prof:"장수현",phone:"053-650-9601",students:40,type:"speech"},
+  {dept:"글로벌베이커리과",date:"2026-05-11",day:"월",time:"16:00~16:50",period:"8교시",place:"예지관 4층 3404강의실",prof:"정현채",phone:"053-650-9601",students:38,type:"speech"},
+  {dept:"공공조달학과",date:"2026-05-30",day:"토",time:"16:30~17:30",period:"",place:"사회관 3층 전자상거래실",prof:"김예은",phone:"053-650-9601",students:42,type:"speech"},
+];
+
+// State
+let currentMonth = 0; // April=0 (0-indexed from April)
+let selectedDate = null;
+let filterDept = '';
+let filterType = '';
+let filterBuilding = '';
+
+const months = [
+  {year:2026, month:4, label:'2026년 4월'},
+  {year:2026, month:5, label:'2026년 5월'},
+];
+
+function getMonthData(mi) {
+  const m = months[mi];
+  if (!m) return null;
+  return m;
+}
+
+function getDaysInMonth(year, month) {
+  return new Date(year, month, 0).getDate();
+}
+
+function getFirstDayOfWeek(year, month) {
+  return new Date(year, month-1, 1).getDay();
+}
+
+function getDateStr(year, month, day) {
+  return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+}
+
+function getClassesForDate(dateStr) {
+  return classData.filter(c => c.date === dateStr);
+}
+
+function getFilteredClasses(classes) {
+  return classes.filter(c => {
+    if (filterDept && c.dept !== filterDept) return false;
+    if (filterType && c.type !== filterType) return false;
+    if (filterBuilding && !c.place.includes(filterBuilding)) return false;
+    return true;
+  });
+}
+
+function getAllDepts() {
+  return [...new Set(classData.map(c=>c.dept))].sort();
+}
+
+function getAllBuildings() {
+  const buildings = new Set();
+  classData.forEach(c => {
+    const b = c.place.split(/\s/)[0];
+    buildings.add(b);
+  });
+  return [...buildings].sort();
+}
+
+// 학과 소개 데이터 (카테고리 포함)
+const deptCategories = [
+  {label:"간호대학", depts:["간호학과"]},
+  {label:"보건·의료", depts:["물리치료과","치위생과","보건의료행정과"]},
+  {label:"IT·보안", depts:["소프트웨어융합과","사이버보안과"]},
+  {label:"공학", depts:["스마트융합기계계열","ICT반도체전자계열","전기자동화과","스마트e-자동차과","화장품화공계열","건축학과","건설시스템과"]},
+  {label:"식품·뷰티·패션", depts:["글로벌외식조리과","글로벌베이커리과","박승철헤어과","K-뷰티과","패션디자인마케팅과"]},
+  {label:"반려동물", depts:["반려동물보건과","반려동물스타일리스트과"]},
+  {label:"사회복지·경영", depts:["사회복지서비스과","사회복지서비스학과","사회복지학과","i-경영회계계열"]},
+  {label:"관광·스포츠", depts:["관광서비스계열","스포츠재활과"]},
+  {label:"디자인·콘텐츠", depts:["시각영상디자인과","인테리어디자인과","웹툰과","게임애니메이션과","모델테이너과"]},
+  {label:"신설학과", depts:["공공조달학과"]},
+];
+
+const deptInfo = {
+  "간호학과": "영남이공대학교 유일의 4년제 학과로, 1983년 개설 이래 나이팅게일하우스 단독 건물에서 운영되고 있습니다. 한국간호교육평가원(KABONE) 인증을 획득하였으며, 재단병원인 영남대학교병원을 활용한 임상실습 환경이 우수합니다. 보건교사 교직과정이 설치되어 있고, 전문대 간호학과 중 최상위권 입시 결과를 기록하고 있습니다.",
+  "소프트웨어융합과": "IT 분야의 소프트웨어 개발 및 디지털 콘텐츠 제작 전문 인력을 양성하는 3년제 학과입니다. 프로그래밍, 웹·앱 개발, 데이터베이스 등 소프트웨어 융합 기술을 중심으로 교육하며, 일본 IT 취업 연계 프로그램도 운영합니다. 과정평가형 국가기술자격(정보처리산업기사)에 선정되어 재학 중 자격 취득이 가능합니다.",
+  "사이버보안과": "2014년 개설된 3년제 학과로, 해킹 공격 및 방어 기술 실무교육 기반의 사이버침해대응 전문 인력을 양성합니다. 24시간 운영 가능한 보안관제센터와 해킹실습 전용망 등 최첨단 실습 인프라를 갖추고 있으며, 매년 취업률 90% 이상을 기록합니다. 졸업생들은 안랩, SK쉴더스, 국가정보원, 사이버수사대 등 국내 유수 보안 기관·기업에 진출하고 있습니다.",
+  "물리치료과": "3년 과정으로 전문 물리치료사를 양성하는 학과로, 교내 입결이 두 번째로 높은 인기 학과입니다. 재단병원인 영남대학교병원을 보유하고 있어, 자체 병원이 없는 4년제 물리치료학과에 비해 현장실습 여건이 우수합니다. 보건의료 인력 수요 증가에 따라 지원자가 꾸준히 늘고 있습니다.",
+  "치위생과": "3년 과정으로 전문 치위생사를 양성하며, 국민 구강 건강 증진에 기여하는 실무 인재를 배출합니다. 재단병원인 영남대학교병원을 활용한 현장실습이 가능하며, 전국 전문대 치위생과 중 재단병원을 보유한 3곳 중 하나입니다. 치과위생사 국가시험 대비 교육과 다양한 임상실습 프로그램을 운영하고 있습니다.",
+  "보건의료행정과": "2년 과정으로 병원 원무과 등 보건의료 행정 분야의 전문 인력을 양성합니다. 졸업과 동시에 보건의료정보관리사 국가고시에 응시할 수 있으며, 의료기관 원무행정·건강보험 심사·청구·의무기록 관리 등을 교육합니다. 의료기관, 건강보험심사평가원, 국민건강보험공단 등으로의 취업을 지원합니다.",
+  "스마트융합기계계열": "4차 산업혁명을 선도하는 기계 분야 전문 기술인을 양성하는 대표 브랜드 학과입니다. 항공·기계설계, 자동차부품설계, CAM, 로봇·메카트로닉스, 스마트금속·금형설계 등 5개 세부 분야로 운영됩니다. ABB로봇센터를 활용한 로봇 교육 등 현장 중심의 최첨단 실습 환경을 갖추고 있습니다.",
+  "ICT반도체전자계열": "ICT(정보통신기술) 및 반도체 분야의 실무형 기술 인재를 양성하며, ICT전공과 반도체전공으로 구분 운영됩니다. 과정평가형 국가기술자격(전자산업기사)에 선정되어 재학 중 자격 취득이 가능합니다. 4차 산업혁명 시대 반도체·전자회로 기반의 실습 중심 교육을 통해 첨단산업 수요에 대응합니다.",
+  "전기자동화과": "1977년 개설 이래 46년 이상의 역사를 지닌 학과로, 전기설비·자동화·전기기기 분야의 전문 기술인을 양성합니다. 한국전력공사, 포스코, 삼성, LG 등 대기업·공기업 취업률이 최상위권입니다. 독일 지멘스 SMSCP 국제자격증, 일본 OMRON 자동화시스템 특화교육 등 글로벌 기업 연계 프로그램을 운영합니다.",
+  "스마트e-자동차과": "전기차·수소차 등 친환경 스마트 자동차 분야의 정비 및 기술 전문 인력을 양성합니다. 과정평가형 국가기술자격(자동차정비산업기사)에 선정되어 실무 교육과 자격 취득을 동시에 지원합니다. 미래 모빌리티 산업의 변화에 대응하는 융합형 기술인재를 배출하고 있습니다.",
+  "화장품화공계열": "화장품제약전공, 화학공학전공, 에너지화공전공으로 구분 운영되며, 화장품·제약·화학공학·에너지 분야의 실무 인력을 양성합니다. 과정평가형 국가기술자격(위험물산업기사)에 선정되어 재학 중 자격 취득이 가능합니다. 4차 산업혁명 시대 융합형 기술인재 양성을 위해 교육과정을 지속적으로 개편하고 있습니다.",
+  "건축학과": "건축설계, BIM(건축정보모델링), 건축시공 등 건축 전반의 실무 능력을 갖춘 전문 기술인을 양성합니다. 건축(산업)기사 등 국가자격증 취득을 지원하며, 설계사무소·건설회사·공공기관 등 다양한 분야로의 취업을 연계합니다. 최신 CAD·BIM 소프트웨어를 활용한 실습 중심 교육과정을 운영합니다.",
+  "건설시스템과": "토목·건설 분야의 설계, 시공, 안전관리 등을 교육하며, 건설 현장의 실무형 기술 인재를 양성합니다. 과정평가형 국가기술자격(건설안전기사)에 선정되어 재학 중 자격 취득 기회를 제공합니다. 국토 인프라 건설 및 안전관리 분야에서 전문성을 갖춘 기술인을 배출하고 있습니다.",
+  "글로벌외식조리과": "한식·양식·일식·중식 등 다양한 조리 분야의 전문 셰프를 양성하는 학과입니다. 과정평가형 국가기술자격(한식조리산업기사)에 선정되어 실무 교육과 자격 취득을 병행합니다. 글로벌 외식산업에 대응할 수 있는 현장 중심의 조리 교육과 산업체 연계 실습을 제공합니다.",
+  "글로벌베이커리과": "제빵·제과·바리스타 분야의 글로벌 실무 능력을 갖춘 전문가를 양성하며, 2026학년도 기준 정원 45명으로 확대되었습니다. 과정평가형 국가기술자격(제빵산업기사)에 선정되어 재학 중 전문 자격을 취득할 수 있습니다. 최신 설비를 갖춘 실습실에서 현장과 동일한 환경의 실기 교육을 운영합니다.",
+  "박승철헤어과": "2011년 전국 최초로 개설된 헤어 전문 브랜드 학과로, 국내 최대 헤어 프랜차이즈 박승철헤어스투디오와 연계합니다. 학기 중 전국 260여 개 매장에서 현장실습이 가능하며, 인턴 경력 인정을 통한 디자이너 조기 승급 혜택이 있습니다. 미용(일반) 국가자격증, 두피관리사, 헤어컬러리스트 등 졸업 전 100% 자격증 취득을 목표로 운영됩니다.",
+  "K-뷰티과": "피부미용, 메이크업, 네일아트 등 K-뷰티 전 분야의 전문 인력을 양성합니다. 국내외에서 주목받는 한국 미용 기술의 최신 트렌드를 반영한 실습 중심 교육과정을 운영합니다. 미용(피부) 국가자격증 등 다양한 자격 취득을 지원하며, 뷰티 산업 전반으로의 취업을 연계합니다.",
+  "패션디자인마케팅과": "패션디자인과 마케팅을 융합한 교육과정으로 패션 산업의 실무형 전문 인재를 양성합니다. 패션 기획·디자인·생산·유통·마케팅 등 패션 비즈니스 전 과정을 학습합니다. 라이브커머스 등 새로운 유통채널에 대응하는 디지털 마케팅 역량도 교육합니다.",
+  "반려동물보건과": "반려동물의 건강관리와 질병 예방을 위한 전문 동물보건사를 양성합니다. 동물병원 실습, 동물간호, 임상병리 등의 실무 교육을 통해 반려동물 보건 분야의 전문성을 기릅니다. 동물보건사 국가자격 취득을 목표로 체계적인 이론·실습 교육과정을 운영합니다.",
+  "반려동물스타일리스트과": "반려동물 미용(그루밍) 전문 스타일리스트를 양성하는 학과입니다. 반려동물 산업의 급성장에 맞춰 펫 미용, 스타일링, 반려동물 행동 이해 등을 교육합니다. 졸업 후 펫살롱, 동물병원, 반려동물 관련 업체 등 다양한 분야로의 취업을 지원합니다.",
+  "사회복지서비스과": "사회복지 현장의 실무형 인재를 양성하는 학과로, 2026학년도 기준 주·야간 포함 총 200명 규모로 증원되었습니다. 사회복지사 2급 자격 취득을 목표로 사회복지 실천·정책·행정 등의 이론과 현장실습을 병행합니다. 지역사회 복지기관, 노인·아동·장애인 시설 등 복지 현장에 기여하는 전문 인력을 배출합니다.",
+  "사회복지서비스학과": "사회복지 현장의 실무형 인재를 양성하는 학과로, 2026학년도 기준 주·야간 포함 총 200명 규모로 증원되었습니다. 사회복지사 2급 자격 취득을 목표로 사회복지 실천·정책·행정 등의 이론과 현장실습을 병행합니다. 지역사회 복지기관, 노인·아동·장애인 시설 등 복지 현장에 기여하는 전문 인력을 배출합니다.",
+  "사회복지학과": "2026학년도 학과 개편을 통해 기존 사회복지·보육과와 청소년복지상담과를 통합하여 새롭게 출범한 학과입니다. 사회복지사 양성을 위한 사회복지학 전공과 보육교사 양성을 위한 보육학 전공을 통합 운영합니다. 보다 폭넓은 복지 분야의 교육과정을 제공하며, 사회복지사 2급 및 보육교사 자격 취득을 지원합니다.",
+  "i-경영회계계열": "경영학과 회계학을 융합한 교육과정으로 기업 경영 및 세무·회계 분야의 실무형 전문 인재를 양성합니다. 세무사·회계사 시험 대비 과정과 함께 ERP, 전산회계, 세무실무 등 실무 중심 교육을 제공합니다. 세무사무소, 회계법인, 기업 경영지원 부서 등으로의 취업을 연계하고 있습니다.",
+  "관광서비스계열": "2026학년도 학과 개편을 통해 항공·호텔관광전공과 웰라이프관광전공으로 새롭게 구성된 계열입니다. 항공 승무원, 호텔리어, 관광 서비스 전문가 등을 양성하며, 퍼스트클래스 모형 실습실 등 현장 동일 교육환경을 갖추고 있습니다. 서비스 매너 교육과 산업체 현장실습을 통해 글로벌 관광·호스피탤리티 분야의 실무 인재를 배출합니다.",
+  "스포츠재활과": "스포츠 손상 예방 및 재활 전문 인력을 양성하는 학과입니다. 운동처방, 스포츠 마사지, 재활 트레이닝 등의 실무 교육을 제공합니다. 스포츠센터, 재활센터, 프로스포츠팀, 피트니스 분야 등으로의 취업을 지원합니다.",
+  "시각영상디자인과": "시각디자인과 영상디자인을 아우르는 융합 교육과정을 운영하며, 광고·편집·영상·UI/UX 분야의 디자이너를 양성합니다. 포트폴리오 중심의 실기 교육과 산업체 프로젝트 참여를 통해 취업 경쟁력을 강화합니다. 디자인 스튜디오, 광고대행사, 영상제작사, IT기업 등으로의 진출을 지원합니다.",
+  "인테리어디자인과": "주거·상업 공간의 실내디자인 전문 인력을 양성합니다. 공간 기획, 설계, 3D 모델링, 시공 등 인테리어 디자인의 전 과정을 교육합니다. 실내건축(산업)기사 자격 취득을 지원하며, 인테리어 디자인 사무소·건설사 등으로의 취업을 연계합니다.",
+  "웹툰과": "한국 웹툰 산업의 성장에 맞춰 전문 웹툰 작가 및 디지털 콘텐츠 크리에이터를 양성합니다. 스토리 구성, 디지털 드로잉, 연출, 컬러링 등 웹툰 제작의 전 과정을 실습 중심으로 교육합니다. 포트폴리오 제작과 웹툰 플랫폼 연재를 지원하며, 웹툰·출판·콘텐츠 분야로의 진출을 돕습니다.",
+  "게임애니메이션과": "게임 그래픽, 3D 애니메이션, 캐릭터 디자인 등 게임·애니메이션 분야의 전문 크리에이터를 양성합니다. 최신 소프트웨어와 장비를 활용한 실습 교육을 통해 실무 역량을 강화합니다. 게임회사, 영상제작사, 애니메이션 스튜디오, 콘텐츠 기업 등으로의 취업을 지원합니다.",
+  "모델테이너과": "모델과 엔터테이너를 결합한 신개념 학과로, 패션모델·피팅모델·인플루언서·크리에이터 등을 양성합니다. 워킹, 포징, 이미지메이킹, 콘텐츠 제작 등의 실습 교육을 제공합니다. 모델에이전시, 엔터테인먼트 기업, 패션업계, 개인 브랜딩 분야 등으로의 진출을 지원합니다.",
+  "공공조달학과": "2026학년도 신설 학과로, 공공조달 분야의 전문성과 실무역량을 갖춘 인재 양성을 목표로 합니다. 조달청 산하 공공조달역량개발원과의 협약을 통해 개설되었으며, 공공조달 실무형 전문인력을 양성합니다. 국가 정책과 산업의 교차점에서 공공서비스를 수행하는 전문가를 배출하는 전국 유일의 학과입니다.",
+};
+
+let selectedDept = null;
+
+// 교시 계산 (주말, 비정규 시간은 제외)
+function getPeriod(c) {
+  if (c.day === '토' || c.day === '일') return '';
+  const start = c.time.split('~')[0];
+  const end = c.time.split('~')[1];
+  if (!start || !end) return '';
+  // 정규: XX:00 시작, XX:50 종료
+  if (!start.endsWith(':00') || !end.endsWith(':50')) return '';
+  const hour = parseInt(start.split(':')[0]);
+  if (hour < 9 || hour > 17) return '';
+  const period = hour - 8;
+  return period + '교시';
+}
+
+// 건물 → 네이버 지도 검색 매핑
+function openNaverMap(place) {
+  const building = place.split(/\s/)[0];
+  const query = encodeURIComponent('영남이공대학교 ' + building);
+  window.open('https://map.naver.com/v5/search/' + query, '_blank');
+}
+
+function selectDeptPanel(dept) {
+  selectedDept = selectedDept === dept ? null : dept;
+  render();
+}
+
+function openKakao() {
+  window.open('https://open.kakao.com/o/gzlXXCni', '_blank');
+}
+
+function scrollToSection(id) {
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function render() {
+  const app = document.getElementById('app');
+  const md = getMonthData(currentMonth);
+  if (!md) { currentMonth = 0; return render(); }
+
+  const daysInMonth = getDaysInMonth(md.year, md.month);
+  const firstDay = getFirstDayOfWeek(md.year, md.month);
+
+  const totalAI = classData.filter(c=>c.type==='ai').length;
+  const totalSpeech = classData.filter(c=>c.type==='speech').length;
+  const totalDepts = new Set(classData.map(c=>c.dept)).size;
+  const totalStudents = classData.reduce((a,c)=>a+c.students,0);
+
+  // Build calendar cells
+  let calCells = '';
+  for(let i=0; i<firstDay; i++) calCells += '<div class="cal-cell empty"></div>';
+  for(let d=1; d<=daysInMonth; d++) {
+    const ds = getDateStr(md.year, md.month, d);
+    const classes = getFilteredClasses(getClassesForDate(ds));
+    const isSelected = selectedDate === ds;
+    const today = new Date().toISOString().split('T')[0];
+
+    let events = '';
+    const maxShow = 3;
+    classes.slice(0, maxShow).forEach(c => {
+      events += `<div class="cal-event ${c.type}">${c.dept.substring(0,6)}</div>`;
+    });
+    if (classes.length > maxShow) {
+      events += `<div class="cal-event-more">+${classes.length - maxShow}건 더</div>`;
+    }
+
+    calCells += `<div class="cal-cell${isSelected?' selected':''}${ds===today?' today':''}" onclick="selectDate('${ds}')">
+      <div class="cal-date">${d}</div>
+      <div class="cal-events">${events}</div>
+    </div>`;
+  }
+
+  // Day detail
+  let dayDetail = '';
+  if (selectedDate) {
+    const classes = getFilteredClasses(getClassesForDate(selectedDate));
+    if (classes.length > 0) {
+      const dateObj = new Date(selectedDate);
+      const dayNames = ['일','월','화','수','목','금','토'];
+      const dayLabel = `${dateObj.getMonth()+1}월 ${dateObj.getDate()}일 (${dayNames[dateObj.getDay()]})`;
+
+      let cards = '';
+      classes.sort((a,b) => a.time.localeCompare(b.time)).forEach(c => {
+        cards += `<div class="class-card" onclick="openDeptModal('${c.dept}')">
+          <span class="class-type-badge ${c.type}">${c.type==='ai'?'AI활용':'스피치'}</span>
+          <div class="class-info">
+            <div class="class-dept">${c.dept} <span style="font-size:11px;color:var(--text-tertiary);font-weight:400">강사 미배정</span></div>
+            <div class="class-meta">
+              <span>⏰ ${c.time}${getPeriod(c) ? ' ('+getPeriod(c)+')' : ''}</span>
+              <span class="map-link" onclick="event.stopPropagation();openNaverMap('${c.place}')" title="네이버 지도에서 보기">📍 ${c.place}</span>
+              <span>👤 ${c.prof} (${c.phone})</span>
+            </div>
+          </div>
+          <div class="class-students">${c.students}명</div>
+        </div>`;
+      });
+
+      dayDetail = `<div class="day-detail">
+        <div class="day-detail-header">
+          <div class="day-detail-title">${dayLabel} 수업 목록 (${classes.length}건)</div>
+          <button class="day-detail-close" onclick="selectedDate=null;render()">✕</button>
+        </div>
+        ${cards}
+      </div>`;
+    }
+  }
+
+  // Filter
+  let deptOptions = '<option value="">전체 학과</option>';
+  getAllDepts().forEach(d => deptOptions += `<option value="${d}"${filterDept===d?' selected':''}>${d}</option>`);
+  let buildingOptions = '<option value="">전체 건물</option>';
+  getAllBuildings().forEach(b => buildingOptions += `<option value="${b}"${filterBuilding===b?' selected':''}>${b}</option>`);
+
+  app.innerHTML = `
+    <!-- Calendar -->
+    <div id="calendar">
+      <div class="section-title"><div class="dot" style="background:var(--accent)"></div>강의 캘린더</div>
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button class="cal-nav-btn" onclick="currentMonth=Math.max(0,currentMonth-1);render()">◀</button>
+          <div class="calendar-month">${md.label}</div>
+          <button class="cal-nav-btn" onclick="currentMonth=Math.min(${months.length-1},currentMonth+1);render()">▶</button>
+        </div>
+        <div class="calendar-legend">
+          <div class="legend-item"><div class="legend-dot ai"></div>AI활용</div>
+          <div class="legend-item"><div class="legend-dot speech"></div>1분 스피치</div>
+        </div>
+        <div class="calendar-grid">
+          <div class="cal-day-header">일</div><div class="cal-day-header">월</div><div class="cal-day-header">화</div><div class="cal-day-header">수</div><div class="cal-day-header">목</div><div class="cal-day-header">금</div><div class="cal-day-header">토</div>
+          ${calCells}
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-bar">
+      <select class="filter-select" onchange="filterDept=this.value;render()">${deptOptions}</select>
+      <select class="filter-select" onchange="filterType=this.value;render()">
+        <option value="">전체 과목</option>
+        <option value="ai"${filterType==='ai'?' selected':''}>AI활용</option>
+        <option value="speech"${filterType==='speech'?' selected':''}>1분 스피치</option>
+      </select>
+      <select class="filter-select" onchange="filterBuilding=this.value;render()">${buildingOptions}</select>
+      <button class="filter-reset" onclick="filterDept='';filterType='';filterBuilding='';render()">필터 초기화</button>
+    </div>
+
+    <!-- Day Detail -->
+    ${dayDetail}
+
+    <!-- Resources & Survey -->
+    <div id="resources"></div>
+    <div class="tab-section">
+      <div class="tab-card">
+        <div class="tab-card-header">📚 공통강의안</div>
+        <div class="tab-card-body">
+          <div class="resource-tabs">
+            <button class="resource-tab active-ai" id="tab-ai" onclick="showResourceTab('ai')">AI활용</button>
+            <button class="resource-tab" id="tab-speech" onclick="showResourceTab('speech')">1분 스피치</button>
+          </div>
+          <div id="resources-ai">
+            <a href="#" class="resource-link" onclick="event.preventDefault();alert('캔바 링크를 설정해주세요')">
+              <div class="resource-icon canva">C</div>
+              <div><div class="resource-name">AI활용 강의안 (캔바)</div><div class="resource-desc">Canva 프레젠테이션 링크</div></div>
+            </a>
+            <a href="#" class="resource-link" onclick="event.preventDefault();alert('구글드라이브 링크를 설정해주세요')">
+              <div class="resource-icon gdrive">G</div>
+              <div><div class="resource-name">AI활용 강의안 (PPT)</div><div class="resource-desc">Google Drive 공유 파일</div></div>
+            </a>
+          </div>
+          <div id="resources-speech" class="hidden">
+            <a href="#" class="resource-link" onclick="event.preventDefault();alert('캔바 링크를 설정해주세요')">
+              <div class="resource-icon canva">C</div>
+              <div><div class="resource-name">1분 스피치 강의안 (캔바)</div><div class="resource-desc">Canva 프레젠테이션 링크</div></div>
+            </a>
+            <a href="#" class="resource-link" onclick="event.preventDefault();alert('구글드라이브 링크를 설정해주세요')">
+              <div class="resource-icon gdrive">G</div>
+              <div><div class="resource-name">1분 스피치 강의안 (PPT)</div><div class="resource-desc">Google Drive 공유 파일</div></div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="tab-card" id="survey">
+        <div class="tab-card-header">📋 수업 설문</div>
+        <div class="tab-card-body">
+          <a href="#" class="survey-link" onclick="event.preventDefault();alert('구글폼 링크를 설정해주세요')">
+            <div class="resource-icon gform">F</div>
+            <div><div class="resource-name">AI활용 수업 설문</div><div class="resource-desc">Google Forms — 수강생 피드백</div></div>
+          </a>
+          <a href="#" class="survey-link" onclick="event.preventDefault();alert('구글폼 링크를 설정해주세요')">
+            <div class="resource-icon gform">F</div>
+            <div><div class="resource-name">1분 스피치 수업 설문</div><div class="resource-desc">Google Forms — 수강생 피드백</div></div>
+          </a>
+          <p style="font-size:12px;color:var(--text-tertiary);margin-top:12px">※ 구글폼 링크는 추후 업데이트 예정입니다</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dept Panel -->
+    <div id="dept-panel">
+      <div class="section-title"><div class="dot" style="background:var(--accent)"></div>학과 소개</div>
+      <div class="dept-panel">
+        <div class="dept-panel-body">
+          <div class="dept-sidebar">
+            ${deptCategories.map(cat => `
+              <div class="dept-cat-label">${cat.label}</div>
+              ${cat.depts.map(d => `<button class="dept-btn${selectedDept===d?' active':''}" onclick="selectDeptPanel('${d}')">${d}</button>`).join('')}
+            `).join('')}
+          </div>
+          <div class="dept-detail-area">
+            ${selectedDept && deptInfo[selectedDept] ? (() => {
+              const cat = deptCategories.find(c => c.depts.includes(selectedDept));
+              const dc = classData.filter(c => c.dept === selectedDept);
+              const aiCnt = dc.filter(c => c.type === 'ai').length;
+              const spCnt = dc.filter(c => c.type === 'speech').length;
+              const stuTotal = dc.reduce((a,c) => a + c.students, 0);
+              return `
+                <div class="dept-detail-name">${selectedDept}</div>
+                <div class="dept-detail-cat">${cat ? cat.label : ''}</div>
+                <div class="dept-detail-desc">${deptInfo[selectedDept]}</div>
+                <div class="dept-detail-stats">
+                  <div class="dept-detail-stat ai">AI활용 ${aiCnt}건</div>
+                  <div class="dept-detail-stat speech">스피치 ${spCnt}건</div>
+                  <div class="dept-detail-stat neutral">수강생 ${stuTotal}명</div>
+                </div>
+                <button class="dept-detail-more" onclick="openDeptModal('${selectedDept}')">상세 일정 보기 →</button>
+              `;
+            })() : `
+              <div class="dept-detail-empty">
+                <div class="icon">🏫</div>
+                <div>왼쪽에서 학과를 선택하면<br>학과 소개를 볼 수 있습니다</div>
+              </div>
+            `}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-label">전체 학과</div><div class="stat-value">${totalDepts}개</div></div>
+      <div class="stat-card"><div class="stat-label">AI활용 수업</div><div class="stat-value ai-val">${totalAI}건</div></div>
+      <div class="stat-card"><div class="stat-label">1분 스피치 수업</div><div class="stat-value speech-val">${totalSpeech}건</div></div>
+      <div class="stat-card"><div class="stat-label">총 수강 인원</div><div class="stat-value">${totalStudents.toLocaleString()}명</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>2026학년도 영남이공대학교 신입생 교육 · AI활용 역량 강화 & 1분 실전 스피치</p>
+      <p style="margin-top:4px">강사 공유 허브 · 유경화 010-3409-6116</p>
+    </div>
+  `;
+}
+
+function selectDate(ds) {
+  selectedDate = selectedDate === ds ? null : ds;
+  render();
+  if (selectedDate) {
+    setTimeout(() => {
+      const detail = document.querySelector('.day-detail');
+      if(detail) detail.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 50);
+  }
+}
+
+function showResourceTab(tab) {
+  document.getElementById('resources-ai').classList.toggle('hidden', tab !== 'ai');
+  document.getElementById('resources-speech').classList.toggle('hidden', tab !== 'speech');
+  document.getElementById('tab-ai').className = 'resource-tab' + (tab === 'ai' ? ' active-ai' : '');
+  document.getElementById('tab-speech').className = 'resource-tab' + (tab === 'speech' ? ' active-speech' : '');
+}
+
+function openDeptModal(dept) {
+  const classes = classData.filter(c => c.dept === dept);
+  if (!classes.length) return;
+
+  const aiClasses = classes.filter(c=>c.type==='ai');
+  const spClasses = classes.filter(c=>c.type==='speech');
+  const profs = [...new Set(classes.map(c=>c.prof + '|' + c.phone))];
+
+  let profInfo = '';
+  profs.forEach(p => {
+    const [name, phone] = p.split('|');
+    profInfo += `<div class="modal-info-item">
+      <div class="modal-info-label">담당교수</div>
+      <div class="modal-info-value">${name}</div>
+    </div>
+    <div class="modal-info-item">
+      <div class="modal-info-label">사무실</div>
+      <div class="modal-info-value">${phone}</div>
+    </div>`;
+  });
+
+  let schedItems = '';
+  [...aiClasses, ...spClasses].sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time)).forEach(c => {
+    schedItems += `<div class="modal-sched-item ${c.type}">
+      <span class="modal-sched-tag ${c.type}">${c.type==='ai'?'AI':'스피치'}</span>
+      <div class="modal-sched-detail">
+        <strong>${c.date.replace('2026-','').replace('-','/')} (${c.day})</strong> ${c.time}${getPeriod(c) ? ' ('+getPeriod(c)+')' : ''}<br>
+        <span class="map-link" onclick="event.stopPropagation();openNaverMap('${c.place}')" title="네이버 지도에서 보기">📍 ${c.place}</span> · 👥 ${c.students}명
+      </div>
+    </div>`;
+  });
+
+  const buildings = [...new Set(classes.map(c=>c.place.split(/\s/)[0]))].join(', ');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.onclick = e => { if(e.target===overlay) overlay.remove(); };
+  overlay.innerHTML = `<div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-dept-name">${dept}</div>
+        <div class="modal-dept-sub">AI활용 ${aiClasses.length}건 · 스피치 ${spClasses.length}건</div>
+      </div>
+      <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+    </div>
+    ${deptInfo[dept] ? `<div class="modal-section" style="background:var(--border-light);padding:16px 24px;">
+      <div style="font-size:14px;color:var(--text-secondary);line-height:1.7;">${deptInfo[dept]}</div>
+    </div>` : ''}
+    <div class="modal-section">
+      <div class="modal-section-title">기본 정보</div>
+      <div class="modal-info-grid">
+        ${profInfo}
+        <div class="modal-info-item">
+          <div class="modal-info-label">건물</div>
+          <div class="modal-info-value"><span class="map-link" onclick="openNaverMap('${buildings}')" title="네이버 지도에서 보기">${buildings}</span></div>
+        </div>
+        <div class="modal-info-item">
+          <div class="modal-info-label">전체 수업</div>
+          <div class="modal-info-value">${classes.length}건</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">수업 일정</div>
+      <div class="modal-schedule">
+        ${schedItems}
+      </div>
+    </div>
+  </div>`;
+  document.body.appendChild(overlay);
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
