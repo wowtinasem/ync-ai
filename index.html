@@ -241,6 +241,16 @@ body {
   transition:all 0.15s;
 }
 .day-detail-close:hover { background:var(--border-light); color:var(--text); }
+.day-detail-coordinator {
+  padding:10px 24px; background:#F0F7FF; border-bottom:1px solid var(--border-light);
+  font-size:14px; color:var(--accent); display:flex; align-items:center; gap:8px;
+}
+.day-detail-coordinator .coord-label {
+  font-weight:700; white-space:nowrap;
+}
+.day-detail-coordinator .coord-names {
+  font-weight:500;
+}
 
 .class-card {
   padding:16px 24px; border-bottom:1px solid var(--border-light);
@@ -664,6 +674,28 @@ const classData = [
   {dept:"공공조달학과",date:"2026-05-30",day:"토",time:"16:30~17:30",period:"",place:"사회관 3층 전자상거래실",prof:"김예은",phone:"053-650-9338",students:42,type:"speech"},
 ];
 
+const dateCoordinators = {
+  "2026-04-01":["최수빈 위원","정지솔 위원"],
+  "2026-04-06":["최수빈 위원","정지솔 위원"],
+  "2026-04-07":["최수빈 위원","정지솔 위원"],
+  "2026-04-08":["최수빈 위원","정지솔 위원"],
+  "2026-04-09":["최수빈 위원"],
+  "2026-04-10":["최수빈 위원"],
+  "2026-04-13":["최수빈 위원","정지솔 위원"],
+  "2026-04-14":["최수빈 위원","정지솔 위원"],
+  "2026-04-15":["정지솔 위원"],
+  "2026-04-16":["정지솔 위원"],
+  "2026-04-20":["김대원 선임","정지솔 위원"],
+  "2026-04-24":["정지솔 위원"],
+  "2026-04-25":["정지솔 위원"],
+  "2026-04-27":["최수빈 위원"],
+  "2026-04-28":["최수빈 위원"],
+  "2026-04-29":["정지솔 위원"],
+  "2026-04-30":["정지솔 위원"],
+  "2026-05-04":["최수빈 위원"],
+  "2026-05-11":["정지솔 위원"],
+};
+
 // State
 let currentMonth = 0; // April=0 (0-indexed from April)
 let selectedDate = null;
@@ -870,11 +902,14 @@ function render() {
         </div>`;
       });
 
+      const coords = dateCoordinators[selectedDate];
+      const coordHtml = coords ? `<div class="day-detail-coordinator"><span class="coord-label">현장 담당</span><span class="coord-names">${coords.join(', ')}</span></div>` : '';
       dayDetail = `<div class="day-detail">
         <div class="day-detail-header">
           <div class="day-detail-title">${dayLabel} 수업 목록 (${classes.length}건)</div>
           <button class="day-detail-close" onclick="selectedDate=null;render()">✕</button>
         </div>
+        ${coordHtml}
         ${cards}
       </div>`;
     }
