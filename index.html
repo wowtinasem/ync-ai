@@ -228,6 +228,7 @@ body {
   animation: slideDown 0.25s ease;
 }
 @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes blinker { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 .day-detail-header {
   padding:16px 24px; border-bottom:1px solid var(--border-light);
@@ -977,7 +978,7 @@ function render() {
               </div>
             </div>
           </div>
-          <div style="margin-top:12px;padding:10px 14px;background:#FFF8E1;border-radius:8px;font-size:13px;color:#78620a;font-weight:500;text-align:center;">캔바 공유용 원본은 반드시 복사해서 수정하시기 바랍니다.</div>
+          <div style="margin-top:14px;padding:18px 20px;background:#FFF3CD;border:2px solid #FFD54F;border-radius:10px;font-size:18px;color:#7B5800;font-weight:800;text-align:center;animation:blinker 1.5s ease-in-out infinite;">캔바 공유용 원본은 반드시 복사해서 수정하시기 바랍니다.</div>
         </div>
       </div>
       <div class="tab-card" id="survey">
