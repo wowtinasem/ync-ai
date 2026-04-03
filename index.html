@@ -516,7 +516,7 @@ body {
       <button class="nav-btn active" onclick="scrollToSection('calendar')">캘린더</button>
       <button class="nav-btn" onclick="scrollToSection('resources')">강의안</button>
       <button class="nav-btn" onclick="scrollToSection('dept-panel')">학과</button>
-      <button class="nav-btn" onclick="scrollToSection('survey')">설문</button>
+      <button class="nav-btn" onclick="scrollToSection('survey')">자료</button>
     </nav>
     <button class="kakao-header-btn" onclick="openKakao()">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.58 2 11c0 2.88 1.87 5.41 4.7 6.83-.15.56-.97 3.6-.99 3.83 0 0-.02.17.09.24.11.06.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.54.08 1.1.12 1.68.12 5.5 0 10-3.58 10-8S17.5 3 12 3z"/></svg>
@@ -982,15 +982,13 @@ function render() {
         </div>
       </div>
       <div class="tab-card" id="survey">
-        <div class="tab-card-header">📋 수업 설문</div>
+        <div class="tab-card-header">📋 자료 공유</div>
         <div class="tab-card-body">
           <div class="survey-col">
-            <div class="survey-col-title"><div class="dot"></div>수강생 피드백</div>
+            <div class="survey-col-title"><div class="dot"></div>프롬프트 등 자료를 공유합니다.</div>
             <div class="survey-btns">
-              <a href="#" class="survey-btn survey-ai" onclick="event.preventDefault();alert('구글폼 링크를 설정해주세요')"><span class="icon">📝</span> AI활용 수업 설문</a>
-              <a href="#" class="survey-btn survey-sp" onclick="event.preventDefault();alert('구글폼 링크를 설정해주세요')"><span class="icon">📝</span> 1분 스피치 수업 설문</a>
+              <a href="https://docs.google.com/spreadsheets/d/12_L52T6L6m52giV_MuY6PvacpJTeOZpqsSsYvd4ME8s/edit?usp=sharing" target="_blank" class="survey-btn survey-ai"><span class="icon">📊</span> 공유 자료 보기</a>
             </div>
-            <p style="font-size:12px;color:#6B7280;margin-top:14px;text-align:center">※ 구글폼 링크는 추후 업데이트 예정입니다</p>
           </div>
         </div>
       </div>
